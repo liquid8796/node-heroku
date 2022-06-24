@@ -1,8 +1,0 @@
-{
-  "name": "xmr-heroku",
-  "description": "deploy xmr to Heroku.",
-  "keywords": ["xmr-heroku"],
-  "website": "https://github.com/liquid8796/xmr-heroku",
-  "repository": "https://github.com/liquid8796/xmr-heroku",
-  "stack": "container"
- }
