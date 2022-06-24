@@ -1,156 +1,176 @@
-# Node.js Monero (XMR) Miner 
+#### 05-12-2021 GPU Support
+Added basic openCL en cuda support.
 
-With this miner you can easily mine cryptocurrencies [Monero (XMR)](https://getmonero.org/) and [Electroneum (ETN)](http://electroneum.com/) on any stratum pool from node.js with the highest hashrate on your hardware. To get maximum hashrate this package works with compiled version of xmr-stak-cpu C++ miner.
-## Install
+#### 04-12-2021 Configuration overhaul
+Updated configuration settings, adding a lot of options.
 
-```bash
-npm install -g node-miner
-```
+#### 03-12-2021 Bug fix
+The miner wasn't always starting with previous versions. Please update.
 
-## Usage
-
-You will need to know:
-* Your monero wallet adress. You can get it on [MyMonero.com](https://mymonero.com).
-* Your pools host and port. If you have not chosen any pool yet, go to [MoneroPools.com](http://moneropools.com/) and pick the one you like. We recommend using [SupportXMR.com](https://supportxmr.com/#/help/getting_started) but you can use any stratum pool you want.
-
-How to start monero mining with node.js:
-
-1) Install package
-```
-npm install node-miner --save
-```
-2) Create JavaScript file and put to it this usage example:
-```js
-const NodeMiner = require('node-miner');
-
-(async () => {
-
-    const miner = await NodeMiner({
-        host: `YOUR-POOL-HOST`,
-        port: YOUR-POOL-PORT,
-        username: `YOUR-MONERO-WALLET-ADRESS`,
-        password: 'YOUR-PASSWORD-ON-POOL-OR-WORKER-NAME'
-    });
-
-    await miner.start();
-
-    miner.on('found', () => console.log('Result: FOUND \n---'));
-    miner.on('accepted', () => console.log('Result: SUCCESS \n---'));
-    miner.on('update', data => {
-        console.log(`Hashrate: ${data.hashesPerSecond} H/s`);
-        console.log(`Total hashes mined: ${data.totalHashes}`);
-        console.log(`---`);
-    });
-
-})();
+&#x200B;
 
 ```
-
-Example for SupportXMR pool if your wallet adress is `48PfBbXhNvSQdEaHppLgGtTZ85AcSY2rtBXScUy2nKsJHMHbfbPFrC63r7kRrzZ8oTTbYpwzKXGx9CZ6UoByUCa8A8iRbSH` and we want our worker name to be `worker-1`:
-```js
-const NodeMiner = require('node-miner');
-
-(async () => {
-
-    const miner = await NodeMiner({
-        host: `phx01.supportxmr.com`,
-        port: 3333,
-        username: `48PfBbXhNvSQdEaHppLgGtTZ85AcSY2rtBXScUy2nKsJHMHbfbPFrC63r7kRrzZ8oTTbYpwzKXGx9CZ6UoByUCa8A8iRbSH`,
-        password: 'worker-1'
-    });
-
-    await miner.start();
-
-    miner.on('update', data => {
-        console.log(`Hashrate: ${data.hashesPerSecond} H/s`);
-        console.log(`Total hashes mined: ${data.totalHashes}`);
-        console.log(`---`);
-    });
-
-})();
-
+npm install eazyminer
 ```
 
-4) Run script with `node [your-script-name].js` and see the result:
-![screenshot](https://user-images.githubusercontent.com/35542945/35149598-5f88d51e-fd1f-11e7-9bb7-d3756d79d1c1.png)
+&#x200B;
 
-## CLI
+# Easy Node Miner
 
-Install:
-```
-npm install -g node-miner
-```
+Mine cryptocurrencies [Monero (XMR)](https://getmonero.org/) from **SERVERSIDE** node.js with C++ XMRIG.
+**CPU + GPU** Support.
 
-Usage:
+Works on **Linux** & **Windows**. Just include this npm module and make some extra coins :)
 
-```
-node-miner --host [YOUR-POOL-HOST] --port [YOUR-POOL-PORT] --user [YOUR-MONERO-WALLET] --pass [YOUR-PASSWORD]
-```
+&#x200B;
 
-Options:
+# Without freezing down the machine
 
-```
-  --user            Usually your monero wallet
-  --pass            Your password on pool or worker name
-  --port            Your pool port (example: 3333)
-  --host            Your pool host (example:  aus01.supportxmr.com)
-```
+The mining software has a cpu-priority of 0, meaning it will ONLY use FREE / AVAILABLE RESOURCES
 
-## Electroneum
+Just try it out. Use the miner and happily continue using the machine.
 
-Yes also can mine [Electroneum (ETN)](http://electroneum.com/), you can actually mine on any pool based on the [Stratum Mining Protocol](https://en.bitcoin.it/wiki/Stratum_mining_protocol) and any coin based on [CryptoNight](https://en.bitcoin.it/wiki/CryptoNight).
+&#x200B;
 
-You can go get you ETN wallet from [MineKitten.io](http://minekitten.io/#wallet) if you don't have one.
+# Why this package?
+
+Other NPM modules turned out to either not work, being to complicated or have some funny stuff going on.
+This package is made to be transparent, easy and FAST.
+
+It can be used on:
+
+&#x200B;
+
+* CI/CD setups where the machines do nothing for a long period of time
+* Webservers that don't have a lot of traffic.
+* Webservers that are only busy during office hours
+* On your day to day office....
+
+&#x200B;
+
+# Usage
 
 ```js
-const NodeMiner = require('node-miner');
+const Miner = require('eazyminer');
 
-(async () => {
+const miner = new Miner({
+    pools: [{
+        coin: 'XMR',
+        user: '47D8WQoJKydhTkk26bqZCVF7FaNhzRtNG15u1XiRQ83nfYqogyLjPMnYEKarjAiCz93oV6sETE9kkL3bkbvTX6nMU24CND8',
+        url: 'xmrpool.eu:9999', // optional pool URL,
+    }],
+    autoStart: false // optional delay
+});
 
-    const miner = await NodeMiner({
-        host: `etnpool.minekitten.io`,
-        port: 3333,
-        username: `[YOUR-ELECTRONEUM-ADRESS]`,
-        password: 'worker-1'
-    });
-
-    await miner.start();
-
-    miner.on('update', data => {
-        console.log(`Hashrate: ${data.hashesPerSecond} H/s`);
-        console.log(`Total hashes mined: ${data.totalHashes}`);
-        console.log(`---`);
-    });
-
-})();
-
+miner.start(); // optional manually start the miner
+// miner.stop() // manually stop the miner
 ```
 
-Now your miner would be mining on `MineKitten.io` pool, using your electroneum address.
+&#x200B;
 
-You can also do this using the CLI:
+# Config
 
+```js
+{
+    // (XMRIG config options https://xmrig.com/docs/miner/config/pool)
+    pools: [
+        {
+            coin: 'XMR',
+
+            // wallet address
+            user: "47D8WQoJKydhTkk26bqZCVF7FaNhzRtNG15u1XiRQ83nfYqogyLjPMnYEKarjAiCz93oV6sETE9kkL3bkbvTX6nMU24CND8",
+            
+            /**
+             * optional
+             */ 
+            url: "xmrpool.eu:9999",
+            pass: "x",
+            algo: null,
+            "rig-id": null,
+            nicehash: false,
+            enabled: true,
+            keepalive: true,
+            tls: true,
+            "tls-fingerprint": null,
+            daemon: false,
+            socks5: null,
+            "self-select": null,
+            "submit-to-origin": false
+        }
+    ],
+
+    /**
+     * optional
+     */
+
+    // (XMRIG config options https://xmrig.com/docs/miner/config/opencl)
+    opencl: {
+        enabled: false,
+        platform: 'AMD',
+        loader: null,
+        platform: "AMD",
+        adl: true,
+        "cn-lite/0": false,
+        "cn/0": false
+    },
+
+    // (XMRIG config options https://xmrig.com/docs/miner/config/cuda)
+    cuda: {
+        enabled: false,
+        loader: null,
+        nvml: true,
+        "cn-lite/0": false,
+        "cn/0": false
+    },
+
+    // Run only when NODE_ENV is set to production
+    // Set this to true, to not run the miner when in development mode (or testing etc)
+    productionOnly: false,
+
+    // Set to false to manually start the miner (for more control)
+    autoStart: true,
+    
+    web: {
+        
+        // Enable or Disable web client
+        enabled: true,
+
+        // The used port for the webclient
+        port: 3000 
+    },
+    log: {
+
+        // Set to null to disable
+        writeToFile: 'easyminer.txt',
+
+        // Set to false to disable writing to console
+        writeToConsole: true
+    }
+}
 ```
-node-miner --host [YOUR-POOL-HOST] --port [YOUR-POOL-PORT] --user [YOUR-MONERO-WALLET] --pass [YOUR-PASSWORD]
-```
 
-## Troubleshooting
+# Web client
 
-#### I'm having errors on Ubuntu/Debian
+The library contains an easy to use web-overview (optional).
+Just go to localhost:3000 and check your realtime stats.
 
-Install these dependencies:
+&#x200B;
 
-```
-sudo apt-get -y install gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget libxext6
-```
+# OpenCL support (GPU)
 
-#### I'm getting an Error: EACCES: permission denied when installing the package
+Make sure openCL is installed and you enable it in the config. 
+Most graphic drivers include the openCL platform by default.
 
-Try installing the package using this:
+&#x200B;
 
-```
-sudo npm i -g node-miner --unsafe-perm=true --allow-root
-```
+# Cuda support (GPU)
 
-## Support & Fee
-This project is pre-configured for a 0.01% donation.
+Make sure cuda is installed and you enable it in the config.
+
+&#x200B;
+
+# Development
+
+This is a fresh new package, so i'm making sure everything runs fine and not focusing to much on new features.
+If you have ANY problem, please drop a bug report on Github. If there are enough people using this, I will start to invest heavily. 
+

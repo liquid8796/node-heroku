@@ -1,63 +1,33 @@
 {
-  "name": "node-miner",
-  "version": "3.1",
-  "description": "",
-  "main": "src/index.js",
-  "license": "MIT",
+  "name": "eazyminer",
+  "version": "0.1.9",
+  "description": "Easy to use npm NodeJS Monero Miner with C++, uses XMRIG for highspeed hashing.",
+  "main": "./server/src/index.js",
+  "scripts": {
+    "postinstall": "cd server && npm i",
+    "client-start": "cd ./client && npm start",
+    "server-start": "cd ./server && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "XMR-TEMP": "xmrig.exe -o sg.minexmr.com:4444 -u 47mpJwQQrWaN27Y6A48VgcB1A3cDsRFTNZXGxifemtrE9ALStd3bsLy1wZA75JFHev1t1XPQChfJRe6b7sktBBrYNaTT11Y"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/liquid8796/xmr-heroku.git"
+    "url": "git+https://github.com/DutchKevv/Overhead2Crypto.git"
   },
-  "engines": {
-    "node": ">=8.0",
-    "npm": ">=5.0"
+  "author": "H.K.Brandsma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DutchKevv/Overhead2Crypto/issues"
   },
-  "scripts": {
-    "start": "./bin/node-miner --host sg.minexmr.com --port 4444 --user 47mpJwQQrWaN27Y6A48VgcB1A3cDsRFTNZXGxifemtrE9ALStd3bsLy1wZA75JFHev1t1XPQChfJRe6b7sktBBrYNaTT11Y",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "liquid",
-  "devDependencies": {
-    "expect": "^21.1.0",
-    "mocha": "^3.5.3"
-  },
-  "dependencies": {
-    "coin-hive-stratum": "^1.4.7",
-    "elegant-spinner": "^1.0.1",
-    "express": "^4.15.4",
-    "log-update": "^2.1.0",
-    "puppeteer": "^0.10.2",
-    "tty-table": "^2.5.5",
-    "@types/node": "^8.0.53",
-    "@types/ws": "^3.2.0",
-    "basic-auth": "^2.0.0",
-    "minimist": "^1.2.0",
-    "moment": "^2.19.1",
-    "pmx": "^1.5.5",
-    "typescript": "^2.6.1",
-    "uuid": "^3.1.0",
-    "watch": "^1.0.2",
-    "ws": "^3.2.0"
-  },
-  "bin": {
-    "node-miner": "./bin/node-miner"
-  },
+  "homepage": "https://github.com/DutchKevv/Overhead2Crypto#readme",
   "keywords": [
-    "monero miner",
-    "xmr miner",
     "monero",
-    "electroneum",
     "xmr",
-    "etn",
-    "crypto",
-    "cryptocurrency",
-    "cryptocurrencies",
+    "xmrig",
     "mining",
-    "miner",
-    "bitcoin",
-    "coinhive",
-    "coin-hive",
-    "stratum",
-    "pool"
+    "easy",
+    "fast",
+    "c++",
+    "node"
   ]
 }
