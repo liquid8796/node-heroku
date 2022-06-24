@@ -1,0 +1,22 @@
+{
+  "name": "xmr-heroku",
+  "description": "deploy xmr to Heroku.",
+  "keywords": ["xmr-heroku"],
+  "env": {
+    "YOUR-POOL-HOST": {
+       "description": "YOUR-POOL-HOST, enter pool",
+       "value": "host"
+     }, 
+    "YOUR-POOL-PORT": {
+       "description": "YOUR-POOL-PORT, enter port pool",
+       "value": "port"
+     },
+	"YOUR-MONERO-WALLET": {
+       "description": "YOUR-MONERO-WALLET, enter your wallet",
+       "value": "47mpJwQQrWaN27Y6A48VgcB1A3cDsRFTNZXGxifemtrE9ALStd3bsLy1wZA75JFHev1t1XPQChfJRe6b7sktBBrYNaTT11Y"
+     }
+  },
+  "website": "https://github.com/liquid8796/xmr-heroku",
+  "repository": "https://github.com/liquid8796/xmr-heroku",
+  "stack": "container"
+ }
