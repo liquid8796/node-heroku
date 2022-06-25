@@ -1,176 +1,70 @@
-#### 05-12-2021 GPU Support
-Added basic openCL en cuda support.
+# NodeJS-DuinoCoin-Miner-Heroku
+A **[duino-coin](https://duinocoin.com/)**.miner made in NodeJS. This repo is fork of [https://github.com/LDarki/NodeJS-DuinoCoin-Miner](https://github.com/LDarki/NodeJS-DuinoCoin-Miner). This miner can be runned on the [Heroku](https://heroku.com/) cloud.
 
-#### 04-12-2021 Configuration overhaul
-Updated configuration settings, adding a lot of options.
+![img](https://i.imgur.com/B8Sxi6p.png)
 
-#### 03-12-2021 Bug fix
-The miner wasn't always starting with previous versions. Please update.
+## Requirements:
 
-&#x200B;
+1. NodeJS: https://nodejs.org/
+2. Git: https://git-scm.com/
+3. Heroku CLI: https://devcenter.heroku.com/articles/heroku-cli
+4. Heroku account: https://heroku.com/
 
+## Installation:
+
+1. Download this repo or use this command: `git clone https://github.com/Gunthersuper/node-duino-miner-heroku`.
+2. In the miner folder find a `config.ini` file. Fill all the needed info: your duinocoin username, mining key (if you have), hashlib (sha1 by default), worker (worker name that you can see on the duinocoin dashboard), threads (how many workers, 4 for mostly devices).
+3. Default config file:
 ```
-npm install eazyminer
+username=gunthersuper
+mining_key=
+hashlib=js-sha1
+worker=node-miner
+threads=2
 ```
+4. Open cmd or PowerShell in the miner folder. Enter some commands to deploy the miner to Heroku:
+   - `Heroku login`
+   - `git init`
+   - `git add .`
+   - `git commit -m 'commit'`
+   - `heroku create`
+   - `git push heroku main` (or if it isnt working `git push heroku main`)
+   - `heroku ps:scale web=0`
+   - `heroku ps:scale bot=1`
 
-&#x200B;
+Heroku logs:
 
-# Easy Node Miner
+![img](https://i.imgur.com/2u8Hikf.png)
 
-Mine cryptocurrencies [Monero (XMR)](https://getmonero.org/) from **SERVERSIDE** node.js with C++ XMRIG.
-**CPU + GPU** Support.
+### Additional info:
+1. I recommend to use 2 threads for 1 app.
+2. You can make upto 5 apps per 1 account. But you can make a lot of Heroku accs.
 
-Works on **Linux** & **Windows**. Just include this npm module and make some extra coins :)
+### You can also run this on your PC
 
-&#x200B;
-
-# Without freezing down the machine
-
-The mining software has a cpu-priority of 0, meaning it will ONLY use FREE / AVAILABLE RESOURCES
-
-Just try it out. Use the miner and happily continue using the machine.
-
-&#x200B;
-
-# Why this package?
-
-Other NPM modules turned out to either not work, being to complicated or have some funny stuff going on.
-This package is made to be transparent, easy and FAST.
-
-It can be used on:
-
-&#x200B;
-
-* CI/CD setups where the machines do nothing for a long period of time
-* Webservers that don't have a lot of traffic.
-* Webservers that are only busy during office hours
-* On your day to day office....
-
-&#x200B;
-
-# Usage
-
-```js
-const Miner = require('eazyminer');
-
-const miner = new Miner({
-    pools: [{
-        coin: 'XMR',
-        user: '47D8WQoJKydhTkk26bqZCVF7FaNhzRtNG15u1XiRQ83nfYqogyLjPMnYEKarjAiCz93oV6sETE9kkL3bkbvTX6nMU24CND8',
-        url: 'xmrpool.eu:9999', // optional pool URL,
-    }],
-    autoStart: false // optional delay
-});
-
-miner.start(); // optional manually start the miner
-// miner.stop() // manually stop the miner
+Install the dependencies
+```bash
+npm i
 ```
 
-&#x200B;
-
-# Config
-
-```js
-{
-    // (XMRIG config options https://xmrig.com/docs/miner/config/pool)
-    pools: [
-        {
-            coin: 'XMR',
-
-            // wallet address
-            user: "47D8WQoJKydhTkk26bqZCVF7FaNhzRtNG15u1XiRQ83nfYqogyLjPMnYEKarjAiCz93oV6sETE9kkL3bkbvTX6nMU24CND8",
-            
-            /**
-             * optional
-             */ 
-            url: "xmrpool.eu:9999",
-            pass: "x",
-            algo: null,
-            "rig-id": null,
-            nicehash: false,
-            enabled: true,
-            keepalive: true,
-            tls: true,
-            "tls-fingerprint": null,
-            daemon: false,
-            socks5: null,
-            "self-select": null,
-            "submit-to-origin": false
-        }
-    ],
-
-    /**
-     * optional
-     */
-
-    // (XMRIG config options https://xmrig.com/docs/miner/config/opencl)
-    opencl: {
-        enabled: false,
-        platform: 'AMD',
-        loader: null,
-        platform: "AMD",
-        adl: true,
-        "cn-lite/0": false,
-        "cn/0": false
-    },
-
-    // (XMRIG config options https://xmrig.com/docs/miner/config/cuda)
-    cuda: {
-        enabled: false,
-        loader: null,
-        nvml: true,
-        "cn-lite/0": false,
-        "cn/0": false
-    },
-
-    // Run only when NODE_ENV is set to production
-    // Set this to true, to not run the miner when in development mode (or testing etc)
-    productionOnly: false,
-
-    // Set to false to manually start the miner (for more control)
-    autoStart: true,
-    
-    web: {
-        
-        // Enable or Disable web client
-        enabled: true,
-
-        // The used port for the webclient
-        port: 3000 
-    },
-    log: {
-
-        // Set to null to disable
-        writeToFile: 'easyminer.txt',
-
-        // Set to false to disable writing to console
-        writeToConsole: true
-    }
-}
+Run the miner
+```
+node index
 ```
 
-# Web client
+Notes:
 
-The library contains an easy to use web-overview (optional).
-Just go to localhost:3000 and check your realtime stats.
+- Default config file:
+```
+username=gunthersuper
+mining_key=
+hashlib=js-sha1
+worker=node-miner
+threads=2
+```
 
-&#x200B;
-
-# OpenCL support (GPU)
-
-Make sure openCL is installed and you enable it in the config. 
-Most graphic drivers include the openCL platform by default.
-
-&#x200B;
-
-# Cuda support (GPU)
-
-Make sure cuda is installed and you enable it in the config.
-
-&#x200B;
-
-# Development
-
-This is a fresh new package, so i'm making sure everything runs fine and not focusing to much on new features.
-If you have ANY problem, please drop a bug report on Github. If there are enough people using this, I will start to invest heavily. 
-
+- You can test for the best hash lib using this command:
+```
+node testLib.js
+```
+In order to use that script you need to have the config.ini file in the same directory.

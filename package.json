@@ -1,33 +1,22 @@
 {
-  "name": "eazyminer",
-  "version": "0.1.9",
-  "description": "Easy to use npm NodeJS Monero Miner with C++, uses XMRIG for highspeed hashing.",
-  "main": "./server/src/index.js",
+  "name": "duino-heroku",
+  "version": "1.0.0",
+  "description": "duino-heroku",
+  "main": "index.js",
+  "dependencies": {
+    "benchmark": "^2.1.4",
+    "ini": "^3.0.0",
+    "js-sha1": "^0.6.0",
+    "jshashes": "^1.0.8",
+    "node-fetch": "^2.6.1",
+    "promise-socket": "^6.0.3",
+    "rusha": "^0.8.14",
+    "sha1": "^1.1.1"
+  },
   "scripts": {
-    "postinstall": "cd server && npm i",
-    "client-start": "cd ./client && npm start",
-    "server-start": "cd ./server && npm start",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "XMR-TEMP": "xmrig.exe -o sg.minexmr.com:4444 -u 47mpJwQQrWaN27Y6A48VgcB1A3cDsRFTNZXGxifemtrE9ALStd3bsLy1wZA75JFHev1t1XPQChfJRe6b7sktBBrYNaTT11Y"
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DutchKevv/Overhead2Crypto.git"
-  },
-  "author": "H.K.Brandsma",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DutchKevv/Overhead2Crypto/issues"
-  },
-  "homepage": "https://github.com/DutchKevv/Overhead2Crypto#readme",
-  "keywords": [
-    "monero",
-    "xmr",
-    "xmrig",
-    "mining",
-    "easy",
-    "fast",
-    "c++",
-    "node"
-  ]
+  "author": "liquid",
+  "license": "MIT"
 }
