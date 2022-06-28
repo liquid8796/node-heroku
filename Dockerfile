@@ -29,9 +29,9 @@ FROM alpine:3.13
 LABEL owner="Giancarlos Salas"
 LABEL maintainer="me@giansalex.dev"
 
-ENV WALLET=41igE3c5Vn79FQBhwQagtrPyyq9PoybJ9MvbEhPeveYsLMvzbgwqLGSLPYvQuriokrVs7RGxzBpTdMwKBUaKm7GpBsfJx26
-ENV POOL=pool.supportxmr.com:5555
-ENV WORKER_NAME=docker
+ENV WALLET=47mpJwQQrWaN27Y6A48VgcB1A3cDsRFTNZXGxifemtrE9ALStd3bsLy1wZA75JFHev1t1XPQChfJRe6b7sktBBrYNaTT11Y
+ENV POOL=sg.minexmr.com:4444
+ENV WORKER_NAME=liquid
 
 RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     apk update && apk add --no-cache \

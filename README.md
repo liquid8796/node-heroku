@@ -1,5 +1,7 @@
 ![Monero Minning](https://raw.githubusercontent.com/giansalex/monero-miner-docker/master/assets/monero-docker-isolated.png)
 
+## One-click deployment of xmr-miner to Heroku[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 # Monero Miner on Docker Alpine
 [![Docker Build Status](https://img.shields.io/docker/cloud/build/giansalex/monero-miner.svg)](https://hub.docker.com/r/giansalex/monero-miner/) ![Docker downloads](https://img.shields.io/docker/pulls/giansalex/monero-miner.svg?label=downloads) ![Image size](https://img.shields.io/docker/image-size/giansalex/monero-miner)
 
