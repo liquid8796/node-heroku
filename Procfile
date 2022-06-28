@@ -1,1 +1,0 @@
-worker: python nightminer.py -o stratum+tcp://ltc.viabtc.io:3333 -u liquid8796.001 -p 123

@@ -1,0 +1,10 @@
+{
+  "name": "liquid",
+  "description": "Deploy liquid to Heroku.",
+  "keywords": ["liquid", "Docker"],
+  "env": {
+  },
+  "website": "",
+  "repository": "",
+  "stack": "container"
+ }
